@@ -1,7 +1,7 @@
 # Frappe Framework Setup Guide
 
 **Author:** Michael Piper\
-**Email:** [pipermichael@aol.com](mailto\:pipermichael@aol.com)
+**Email:** [pipermichael@aol.com](mailto:pipermichael@aol.com)
 
 ## Prerequisites
 
@@ -123,81 +123,67 @@ bench --site task_manager.local install-app task_manager
 
 ## Step 6: Create a "Task" DocType
 
-Using CLI:
+### **Solution 1: Use the Frappe Console**
+
+Run the following commands inside your **Bench directory** (`frappe-bench`):
+```sh
+cd ~/frappe-bench
+bench --site task_manager.local console
+```
+Then, inside the Python shell, run:
+```python
+frappe.get_doc({
+    "doctype": "DocType",
+    "name": "Task",
+    "module": "YourModuleName",
+    "custom": 1,
+    "fields": [
+        {"fieldname": "title", "fieldtype": "Data", "label": "Title"},
+        {"fieldname": "description", "fieldtype": "Small Text", "label": "Description"}
+    ]
+}).insert()
+```
+Replace **`YourModuleName`** with the actual module name.
+
+### **Solution 2: Create via Web UI**
+1. Go to **Frappe Desk** (`http://task_manager.local/desk`).
+2. Navigate to **Developer > DocType**.
+3. Click **New**, enter **Task** as the name, and configure the fields.
+4. Save and enable **Custom?** if needed.
+
+### **Solution 3: Using Bench Reload**
+If you modified an existing DocType, reload it:
+```sh
+bench --site task_manager.local reload-doctype Task
+```
+
+## Default Administrator Username
+
+The default Administrator username is:
+
+```sh
+Administrator
+```
+
+To access your Frappe site at [http://task_manager.local/](http://task_manager.local/), you need to map the domain `task_manager.local` to your local machine's IP address (`127.0.0.1` or `localhost`).
+
+### Step 1: Edit the Hosts File
+
+Open the terminal on your Linux machine.
+
+Open the hosts file in a text editor with root privileges:
 
 ```bash
-bench --site task_manager.local new-doctype Task
+sudo nano /etc/hosts
 ```
 
-Using Frappe Interface:
+Add the following line at the end of the file:
 
-1. Navigate to **Frappe Desk > Developer > DocType**.
-2. Click **New**.
-3. Enter "Task" as the name.
-4. Add fields like `title`, `description`, `status`, `assigned_to`, and `due_date`.
-5. Save the DocType.
-
-## API Authentication
-
-### Generate API Token
-
-```bash
-bench --site task_manager.local make-token user@example.com
+```
+127.0.0.1   task_manager.local
 ```
 
-### Include Token in API Requests
+Save the file and exit the editor:
 
-```json
-{
-  "Authorization": "token <api-token>"
-}
-```
-
-## Database Schema for Project Management
-
-### DocTypes
-
-- **Project**: title, description, start\_date, end\_date
-- **Task**: title, description, status, assigned\_to, due\_date, link to Project
-- **User**: Default Frappe User DocType
-
-### Relationships
-
-- A Project has multiple Tasks.
-- A Task is assigned to a User.
-
-## Performance Optimization
-
-### Optimize API Calls
-
-- Use pagination:
-  ```bash
-  GET /api/resource/Task?limit_start=0&limit_page_length=20
-  ```
-- Fetch selective fields:
-  ```bash
-  GET /api/resource/Task?fields=["title", "status"]
-  ```
-
-### Implement Caching
-
-```bash
-sudo apt install redis-server
-bench --site task_manager.local set-config redis_cache enabled
-bench --site task_manager.local set-config redis_queue enabled
-```
-
-## Debugging
-
-### Debugging Tools
-
-```bash
-bench --site task_manager.local --debug
-```
-
-### Example Solution for Slow API Responses
-
-- Enable Redis caching.
-- Optimize database queries.
-- Use indexing for frequently queried fields.
+- In nano, press **CTRL + X**, then **Y**, and **Enter**.
 
