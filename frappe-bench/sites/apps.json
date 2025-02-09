@@ -7,5 +7,15 @@
         "required": [],
         "idx": 1,
         "version": "16.0.0-dev"
+    },
+    "task_manager": {
+        "is_repo": true,
+        "resolution": {
+            "commit_hash": "e4b8547e330f372f885500e66121c1cc3ee6873f",
+            "branch": "master"
+        },
+        "required": [],
+        "idx": 2,
+        "version": "0.0.1"
     }
 }

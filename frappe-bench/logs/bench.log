@@ -15,3 +15,40 @@
 2025-02-09 09:41:10,236 INFO /home/mac/Workspace/frappe/.venv/bin/bench new-site task_manager.local
 2025-02-09 09:50:11,445 INFO /home/mac/Workspace/frappe/.venv/bin/bench new-site task_manager.local
 2025-02-09 09:50:18,979 INFO /home/mac/Workspace/frappe/.venv/bin/bench new-site task_manager.local --force
+2025-02-09 09:57:06,104 INFO /home/mac/Workspace/frappe/.venv/bin/bench new-app task_manager
+2025-02-09 09:57:06,111 LOG creating new app task_manager
+2025-02-09 09:57:49,934 LOG Installing task_manager
+2025-02-09 09:57:49,936 DEBUG cd /home/mac/Workspace/frappe/frappe-bench && /home/mac/Workspace/frappe/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /home/mac/Workspace/frappe/frappe-bench/apps/task_manager 
+2025-02-09 09:57:54,241 DEBUG bench build --app task_manager
+2025-02-09 09:57:54,395 INFO /home/mac/Workspace/frappe/.venv/bin/bench build --app task_manager
+2025-02-09 09:57:59,221 WARNING restart failed: Couldn't find supervisorctl in PATH
+2025-02-09 09:58:00,004 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local install-app task_manager
+2025-02-09 10:00:18,662 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local new-doctype Task
+2025-02-09 10:00:48,579 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local new-doctype Task
+2025-02-09 10:01:05,103 INFO /home/mac/Workspace/frappe/.venv/bin/bench start
+2025-02-09 10:01:05,482 INFO /home/mac/Workspace/frappe/.venv/bin/bench serve --port 8000
+2025-02-09 10:01:05,491 INFO /home/mac/Workspace/frappe/.venv/bin/bench schedule
+2025-02-09 10:01:05,495 INFO /home/mac/Workspace/frappe/.venv/bin/bench watch
+2025-02-09 10:01:05,495 INFO /home/mac/Workspace/frappe/.venv/bin/bench worker
+2025-02-09 10:03:15,254 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local set-config redis_cache enabled
+2025-02-09 10:03:16,476 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local set-config redis_queue enabled
+2025-02-09 10:04:54,450 INFO /home/mac/Workspace/frappe/.venv/bin/bench start
+2025-02-09 10:04:54,727 INFO /home/mac/Workspace/frappe/.venv/bin/bench watch
+2025-02-09 10:04:54,738 INFO /home/mac/Workspace/frappe/.venv/bin/bench schedule
+2025-02-09 10:04:54,774 INFO /home/mac/Workspace/frappe/.venv/bin/bench worker
+2025-02-09 10:04:54,788 INFO /home/mac/Workspace/frappe/.venv/bin/bench serve --port 8000
+2025-02-09 10:10:27,996 INFO /home/mac/Workspace/frappe/.venv/bin/bench start
+2025-02-09 10:10:28,261 INFO /home/mac/Workspace/frappe/.venv/bin/bench serve --port 8000
+2025-02-09 10:10:28,312 INFO /home/mac/Workspace/frappe/.venv/bin/bench watch
+2025-02-09 10:10:28,328 INFO /home/mac/Workspace/frappe/.venv/bin/bench worker
+2025-02-09 10:10:28,351 INFO /home/mac/Workspace/frappe/.venv/bin/bench schedule
+2025-02-09 10:19:07,581 INFO /home/mac/Workspace/frappe/.venv/bin/bench start
+2025-02-09 10:19:07,918 INFO /home/mac/Workspace/frappe/.venv/bin/bench serve --port 8000
+2025-02-09 10:19:07,947 INFO /home/mac/Workspace/frappe/.venv/bin/bench schedule
+2025-02-09 10:19:07,984 INFO /home/mac/Workspace/frappe/.venv/bin/bench worker
+2025-02-09 10:19:08,030 INFO /home/mac/Workspace/frappe/.venv/bin/bench watch
+2025-02-09 10:23:11,434 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local new-doctype Task
+2025-02-09 10:23:55,308 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:28:12,530 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:28:15,335 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:31:54,712 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console

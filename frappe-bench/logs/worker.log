@@ -1,0 +1,130 @@
+2025-02-09 10:01:05,929 Worker rq:worker:1904bbeb9114436eb22e8d452f39a85d started with PID 22922, version 2.1.0
+2025-02-09 10:01:05,930 Subscribing to channel rq:pubsub:1904bbeb9114436eb22e8d452f39a85d
+2025-02-09 10:01:05,939 *** Listening on home-mac-Workspace-frappe-frappe-bench:short, home-mac-Workspace-frappe-frappe-bench:default, home-mac-Workspace-frappe-frappe-bench:long...
+2025-02-09 10:01:05,939 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:short
+2025-02-09 10:01:05,940 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:default
+2025-02-09 10:01:05,956 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:long
+2025-02-09 10:03:01,260 Worker 1904bbeb9114436eb22e8d452f39a85d [PID 22922]: warm shut down requested
+2025-02-09 10:03:01,287 Unsubscribing from channel rq:pubsub:1904bbeb9114436eb22e8d452f39a85d
+2025-02-09 10:04:55,243 Worker rq:worker:9e4ac2ba8ae8468ea880e50847f67d8f started with PID 24036, version 2.1.0
+2025-02-09 10:04:55,243 Subscribing to channel rq:pubsub:9e4ac2ba8ae8468ea880e50847f67d8f
+2025-02-09 10:04:55,244 *** Listening on home-mac-Workspace-frappe-frappe-bench:short, home-mac-Workspace-frappe-frappe-bench:default, home-mac-Workspace-frappe-frappe-bench:long...
+2025-02-09 10:04:55,244 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:short
+2025-02-09 10:04:55,245 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:default
+2025-02-09 10:04:55,246 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:long
+2025-02-09 10:07:03,189 Worker 9e4ac2ba8ae8468ea880e50847f67d8f [PID 24036]: warm shut down requested
+2025-02-09 10:07:03,190 Unsubscribing from channel rq:pubsub:9e4ac2ba8ae8468ea880e50847f67d8f
+Traceback (most recent call last):
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 357, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 62, in call_with_retry
+    return do()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 358, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 730, in _connect
+    raise err
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 718, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mac/Workspace/frappe/frappe-bench/apps/frappe/frappe/utils/bench_helper.py", line 48, in invoke
+    return super().invoke(ctx)
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/click/core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/click/core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/click/core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/mac/Workspace/frappe/frappe-bench/apps/frappe/frappe/commands/scheduler.py", line 206, in start_worker
+    start_worker(
+  File "/home/mac/Workspace/frappe/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 324, in start_worker
+    worker.work(
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/rq/worker.py", line 645, in work
+    self.teardown()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/rq/worker.py", line 1152, in teardown
+    self.unsubscribe()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/rq/worker.py", line 1059, in unsubscribe
+    self.pubsub.unsubscribe()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 982, in unsubscribe
+    return self.execute_command("UNSUBSCRIBE", *args)
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 786, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1422, in get_connection
+    connection.connect()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 363, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+
+Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-02-09 10:10:28,788 Worker rq:worker:8394bacdb2e943f98f6ccc3e628942b5 started with PID 25620, version 2.1.0
+2025-02-09 10:10:28,788 Subscribing to channel rq:pubsub:8394bacdb2e943f98f6ccc3e628942b5
+2025-02-09 10:10:28,790 *** Listening on home-mac-Workspace-frappe-frappe-bench:short, home-mac-Workspace-frappe-frappe-bench:default, home-mac-Workspace-frappe-frappe-bench:long...
+2025-02-09 10:10:28,790 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:short
+2025-02-09 10:10:28,792 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:default
+2025-02-09 10:10:28,793 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:long
+2025-02-09 10:19:05,733 Worker 8394bacdb2e943f98f6ccc3e628942b5 [PID 25620]: warm shut down requested
+2025-02-09 10:19:05,738 Unsubscribing from channel rq:pubsub:8394bacdb2e943f98f6ccc3e628942b5
+2025-02-09 10:19:08,478 Worker rq:worker:31cc58dd353843dca1fd9ad9514b483e started with PID 27548, version 2.1.0
+2025-02-09 10:19:08,479 Subscribing to channel rq:pubsub:31cc58dd353843dca1fd9ad9514b483e
+2025-02-09 10:19:08,480 *** Listening on home-mac-Workspace-frappe-frappe-bench:short, home-mac-Workspace-frappe-frappe-bench:default, home-mac-Workspace-frappe-frappe-bench:long...
+2025-02-09 10:19:08,480 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:short
+2025-02-09 10:19:08,482 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:default
+2025-02-09 10:19:08,483 Cleaning registries for queue: home-mac-Workspace-frappe-frappe-bench:long
+2025-02-09 10:20:00,658 home-mac-Workspace-frappe-frappe-bench:default: frappe.utils.background_jobs.execute_job(event=None, is_async=True, job_name='frappe.core.doctype.user.user.create_contact', kwargs={'user': <User: doctype=User pipermichael@aol.com>, 'ignore_mandatory': Tru..., method='frappe.core.doctype.user.user.create_contact', site='task_manager.local', user='Administrator') (task_manager.local||34ffa5d8-565b-4d58-aed4-639ed8fd0ea9)
+2025-02-09 10:20:03,730 Successfully completed frappe.utils.background_jobs.execute_job(event=None, is_async=True, job_name='frappe.core.doctype.user.user.create_contact', kwargs={'user': <User: doctype=User pipermichael@aol.com>, 'ignore_mandatory': Tru..., method='frappe.core.doctype.user.user.create_contact', site='task_manager.local', user='Administrator') job in 0:00:02.726281s on worker 31cc58dd353843dca1fd9ad9514b483e
+2025-02-09 10:20:03,730 home-mac-Workspace-frappe-frappe-bench:default: Job OK (task_manager.local||34ffa5d8-565b-4d58-aed4-639ed8fd0ea9)
+2025-02-09 10:20:03,730 Result is kept for 600 seconds
+2025-02-09 10:20:03,738 home-mac-Workspace-frappe-frappe-bench:default: frappe.utils.background_jobs.execute_job(event=None, is_async=True, job_name='frappe.core.doctype.user.user.update_gravatar', kwargs={'name': 'pipermichael@aol.com'}, method='frappe.core.doctype.user.user.update_gravatar', site='task_manager.local', user='Administrator') (task_manager.local||5cbda479-69ea-4ad6-bceb-8f13e92b73f3)
+2025-02-09 10:20:04,541 Successfully completed frappe.utils.background_jobs.execute_job(event=None, is_async=True, job_name='frappe.core.doctype.user.user.update_gravatar', kwargs={'name': 'pipermichael@aol.com'}, method='frappe.core.doctype.user.user.update_gravatar', site='task_manager.local', user='Administrator') job in 0:00:00.795240s on worker 31cc58dd353843dca1fd9ad9514b483e
+2025-02-09 10:20:04,542 home-mac-Workspace-frappe-frappe-bench:default: Job OK (task_manager.local||5cbda479-69ea-4ad6-bceb-8f13e92b73f3)
+2025-02-09 10:20:04,542 Result is kept for 600 seconds
+2025-02-09 10:31:49,792 Worker 31cc58dd353843dca1fd9ad9514b483e [PID 27548]: warm shut down requested
+2025-02-09 10:31:49,806 Unsubscribing from channel rq:pubsub:31cc58dd353843dca1fd9ad9514b483e
+Traceback (most recent call last):
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 357, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 62, in call_with_retry
+    return do()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 358, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 730, in _connect
+    raise err
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 718, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mac/Workspace/frappe/frappe-bench/apps/frappe/frappe/utils/bench_helper.py", line 48, in invoke
+    return super().invoke(ctx)
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/click/core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/click/core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/click/core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/mac/Workspace/frappe/frappe-bench/apps/frappe/frappe/commands/scheduler.py", line 206, in start_worker
+    start_worker(
+  File "/home/mac/Workspace/frappe/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 324, in start_worker
+    worker.work(
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/rq/worker.py", line 645, in work
+    self.teardown()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/rq/worker.py", line 1152, in teardown
+    self.unsubscribe()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/rq/worker.py", line 1059, in unsubscribe
+    self.pubsub.unsubscribe()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 982, in unsubscribe
+    return self.execute_command("UNSUBSCRIBE", *args)
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 786, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1422, in get_connection
+    connection.connect()
+  File "/home/mac/Workspace/frappe/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 363, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+
+Error 111 connecting to 127.0.0.1:11000. Connection refused.
