@@ -1,7 +1,7 @@
 # Frappe Framework Setup Guide
 
 **Author:** Michael Piper\
-**Email:** [pipermichael@aol.com](mailto\:pipermichael@aol.com)
+**Email:** [pipermichael@aol.com](mailto:pipermichael@aol.com)
 
 ## Prerequisites
 
@@ -61,6 +61,20 @@ brew install yarn
 brew install wkhtmltopdf
 ```
 
+## Setup task_manager.local on Localhost
+
+### Linux/macOS
+
+```bash
+echo "127.0.0.1 task_manager.local" | sudo tee -a /etc/hosts
+```
+
+### Windows (Run as Administrator)
+
+```powershell
+Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "127.0.0.1 task_manager.local"
+```
+
 ## Docker Setup
 
 ### Install Docker
@@ -88,34 +102,23 @@ source .venv/bin/activate
 
 ## Step 2: Create the New Database User
 
-Run the following SQL command to create the user `task_manage` with the password `password`:
-
 ```sql
 CREATE USER 'task_manage'@'localhost' IDENTIFIED BY 'password';
-```
-
-### Grant Superuser Privileges
-
-```sql
 GRANT ALL PRIVILEGES ON *.* TO 'task_manage'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
 
 ### Verify the User
 
-Check if the user was created successfully:
-
 ```sql
 SELECT user, host FROM mysql.user;
 ```
 
-Test the new user by logging in:
+Test login:
 
 ```bash
 mysql -u task_manage -p
 ```
-
-Enter the password `password` when prompted.
 
 ## Step 3: Install Frappe Bench
 
@@ -140,7 +143,7 @@ bench --site task_manager.local install-app task_manager
 
 ## Step 6: Create a "Task" DocType
 
-### **Solution 1: Use the Frappe Console**
+### Using Frappe Console
 
 ```sh
 cd ~/frappe-bench
@@ -162,22 +165,14 @@ frappe.get_doc({
 }).insert()
 ```
 
-### **Solution 2: Create via Web UI**
+### Using Web UI
 
-1. Go to **Frappe Desk** (`http://task_manager.local/desk`).
+1. Go to **Frappe Desk** (`http://task_manager.local:8000/desk`).
 2. Navigate to **Developer > DocType**.
-3. Click **New**, enter **Task** as the name, and configure the fields.
+3. Click **New**, enter **Task**, and configure the fields.
 4. Save and enable **Custom?** if needed.
 
-### **Solution 3: Using Bench Reload**
-
-```sh
-bench --site task_manager.local reload-doctype Task
-```
-
 ## Develop RESTful APIs
-
-Use Frappe's built-in API capabilities:
 
 - **Create:** `POST /api/resource/Task`
 - **Read:** `GET /api/resource/Task/<task-name>`
@@ -190,7 +185,7 @@ Use Frappe's built-in API capabilities:
 
 ```bash
 curl -X POST http://task_manager.local:8000/api/resource/Task\
- -H "Authorization: token be5920cb845e764:b98c5601b5d8517" \
+ -H "Authorization: token <api-key:api-secret>" \ 
  -H "Content-Type: application/json" \
  -d '{
     "title": "Complete API Development",
@@ -201,15 +196,15 @@ curl -X POST http://task_manager.local:8000/api/resource/Task\
   }'
 ```
 
-### Add Authentication
+### Authentication
 
-Generate an API token:
+Generate API token:
 
 ```bash
-bench --site task_manager.local make-token user@example.com
+ make-token from dashboard
 ```
 
-Include the token in request headers:
+Include in headers:
 
 ```json
 {
@@ -217,40 +212,59 @@ Include the token in request headers:
 }
 ```
 
-## Performance Optimization
+## Testing the Setup
 
-### Use Pagination for Large Datasets
+To ensure everything is running correctly, follow these steps:
 
-```bash
-GET /api/resource/Task?limit_start=0&limit_page_length=20
-```
+1. **Check Bench Status:**
+   ```bash
+   bench start
+   ```
+2. **Verify Site is Running:**
+   - Open `http://task_manager.local:8000` in a browser.
+3. **Test API Response:**
+   ```bash
+   curl -X GET http://task_manager.local:8000/api/method/ping
+   ```
+4. **Check MariaDB Connection:**
+   ```bash
+   bench --site task_manager.local mysql
+   ```
+5. **Run Unit Tests:**
+   ```bash
+   bench --site task_manager.local run-tests
+   ```
 
-### Selective Fields to Reduce Payload
+## Data Management (20 Points)
 
-```bash
-GET /api/resource/Task?fields=["title", "status"]
-```
+- Design a **normalized** database schema for a project management system using DocTypes.
+- Define relationships:
+  - **Project:** title, description, start_date, end_date.
+  - **Task:** title, description, status, assigned_to, due_date (linked to Project).
+  - **User:** Use default Frappe User DocType.
+- Implement in **DocType Builder**.
 
-### Enable Redis Caching
+## Performance Optimization (20 Points)
 
-```bash
-sudo apt install redis-server
-bench --site task_manager.local set-config redis_cache enabled
-bench --site task_manager.local set-config redis_queue enabled
-```
+- **Use Pagination:**
+  ```bash
+  GET /api/resource/Task?limit_start=0&limit_page_length=20
+  ```
+- **Selective Fields to Reduce Payload:**
+  ```bash
+  GET /api/resource/Task?fields=["title", "status"]
+  ```
+- **Enable Redis Caching:**
+  ```bash
+  sudo apt install redis-server
+  bench --site task_manager.local set-config redis_cache enabled
+  bench --site task_manager.local set-config redis_queue enabled
+  ```
 
-## Debugging and Problem Solving
+## Debugging and Problem Solving (10 Points)
 
-Analyze Frappe logs:
-
-```bash
-bench --site task_manager.local --debug
-```
-
-If API responses are slow:
-- Enable Redis caching
-- Optimize database queries
-
-Document issues and resolutions in the Frappe Community Forum.
-
+- **Analyze Frappe logs:**
+  ```bash
+  bench --site task_manager.local --debug
+  ```
 
