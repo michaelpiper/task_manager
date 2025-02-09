@@ -1,7 +1,7 @@
 # Frappe Framework Setup Guide
 
 **Author:** Michael Piper\
-**Email:** [pipermichael@aol.com](mailto:pipermichael@aol.com)
+**Email:** [pipermichael@aol.com](mailto\:pipermichael@aol.com)
 
 ## Prerequisites
 
@@ -125,17 +125,18 @@ bench --site task_manager.local install-app task_manager
 
 ### **Solution 1: Use the Frappe Console**
 
-Run the following commands inside your **Bench directory** (`frappe-bench`):
 ```sh
 cd ~/frappe-bench
 bench --site task_manager.local console
 ```
-Then, inside the Python shell, run:
+
+Inside the Python shell:
+
 ```python
 frappe.get_doc({
     "doctype": "DocType",
     "name": "Task",
-    "module": "YourModuleName",
+    "module": "Desk",
     "custom": 1,
     "fields": [
         {"fieldname": "title", "fieldtype": "Data", "label": "Title"},
@@ -143,47 +144,110 @@ frappe.get_doc({
     ]
 }).insert()
 ```
-Replace **`YourModuleName`** with the actual module name.
 
 ### **Solution 2: Create via Web UI**
+
 1. Go to **Frappe Desk** (`http://task_manager.local/desk`).
 2. Navigate to **Developer > DocType**.
 3. Click **New**, enter **Task** as the name, and configure the fields.
 4. Save and enable **Custom?** if needed.
 
 ### **Solution 3: Using Bench Reload**
-If you modified an existing DocType, reload it:
+
 ```sh
 bench --site task_manager.local reload-doctype Task
 ```
 
-## Default Administrator Username
+## Develop RESTful APIs
 
-The default Administrator username is:
+Use Frappe's built-in API capabilities:
 
-```sh
-Administrator
-```
+- **Create:** `POST /api/resource/Task`
+- **Read:** `GET /api/resource/Task/<task-name>`
+- **Update:** `PUT /api/resource/Task/<task-name>`
+- **Delete:** `DELETE /api/resource/Task/<task-name>`
 
-To access your Frappe site at [http://task_manager.local/](http://task_manager.local/), you need to map the domain `task_manager.local` to your local machine's IP address (`127.0.0.1` or `localhost`).
+### cURL Examples
 
-### Step 1: Edit the Hosts File
-
-Open the terminal on your Linux machine.
-
-Open the hosts file in a text editor with root privileges:
+#### Create a Task
 
 ```bash
-sudo nano /etc/hosts
+curl -X POST http://task_manager.local:8000/api/resource/Task\
+ -H "Authorization: token be5920cb845e764:b98c5601b5d8517" \
+ 
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Complete API Development",
+    "description": "Develop RESTful APIs for Task DocType",
+    "status": "Open",
+    "assigned_to": "user@example.com",
+    "due_date": "2023-12-31"
+  }'
 ```
 
-Add the following line at the end of the file:
+### Add Authentication
 
+Generate an API token:
+
+```bash
+bench --site task_manager.local make-token user@example.com
 ```
-127.0.0.1   task_manager.local
+
+Include the token in request headers:
+
+```json
+{
+  "Authorization": "token <api-token>"
+}
 ```
 
-Save the file and exit the editor:
+## Verify Redis Configuration
 
-- In nano, press **CTRL + X**, then **Y**, and **Enter**.
+### Check Redis Configuration Files
+
+Ensure that the following Redis configuration files exist:
+
+- `redis_cache.conf`
+- `redis_queue.conf`
+- `redis_socketio.conf`
+
+If missing, regenerate them:
+
+```bash
+bench setup redis
+```
+
+### Ensure Redis Services Are Running
+
+Start all services:
+
+```bash
+bench start
+```
+
+Or manually start Redis:
+
+```bash
+redis-server config/redis_cache.conf
+redis-server config/redis_queue.conf
+redis-server config/redis_socketio.conf
+```
+
+### Review the Procfile
+
+Ensure it includes Redis services:
+
+```ini
+redis_cache: redis-server config/redis_cache.conf
+redis_socketio: redis-server config/redis_socketio.conf
+redis_queue: redis-server config/redis_queue.conf
+```
+
+### Check for Port Conflicts
+
+Ensure Redis configuration ports are not occupied. Modify `.conf` files if needed.
+
+### Get Help
+
+Seek assistance in the [Frappe Community Forum](https://discuss.frappe.io/).
 

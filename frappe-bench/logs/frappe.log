@@ -1,0 +1,15 @@
+2025-02-09 11:23:21,276 ERROR frappe New Exception collected in error log
+Site: task_manager.local
+Form Dict: {'user': 'Administrator', 'cmd': 'frappe.core.doctype.user.user.generate_keys'}
+2025-02-09 11:23:39,120 ERROR frappe New Exception collected in error log
+Site: task_manager.local
+Form Dict: {'user': 'Administrator', 'cmd': 'frappe.core.doctype.user.user.generate_keys'}
+2025-02-09 11:23:42,791 ERROR frappe New Exception collected in error log
+Site: task_manager.local
+Form Dict: {'user': 'Administrator', 'cmd': 'frappe.core.doctype.user.user.generate_keys'}
+2025-02-09 11:23:43,249 ERROR frappe New Exception collected in error log
+Site: task_manager.local
+Form Dict: {'user': 'Administrator', 'cmd': 'frappe.core.doctype.user.user.generate_keys'}
+2025-02-09 11:23:43,449 ERROR frappe New Exception collected in error log
+Site: task_manager.local
+Form Dict: {'user': 'Administrator', 'cmd': 'frappe.core.doctype.user.user.generate_keys'}

@@ -1,0 +1,37 @@
+2025-02-09 11:00:37,400 INFO ipython === bench console session ===
+2025-02-09 11:00:37,400 INFO ipython frappe.get_doc({
+    "doctype": "DocType",
+    "name": "Task",
+    "module": "Desk",
+    "custom": 1,
+    "fields": [
+        {"fieldname": "title", "fieldtype": "Data", "label": "Title"},
+        {"fieldname": "description", "fieldtype": "Small Text", "label": "Description"}
+    ]
+}).insert()
+2025-02-09 11:00:37,400 INFO ipython === session end ===
+2025-02-09 11:06:55,813 INFO ipython === bench console session ===
+2025-02-09 11:06:55,813 INFO ipython === session end ===
+2025-02-09 11:23:44,900 INFO ipython === bench console session ===
+2025-02-09 11:23:44,900 INFO ipython user = frappe.get_doc("User", "user@example.com")
+api_key, api_secret = user.generate_api_key()
+print(f"API Key: {api_key}")
+print(f"API Secret: {api_secret}")
+2025-02-09 11:23:44,900 INFO ipython user = frappe.get_doc("User", "pipermichael@aol.com")
+api_key, api_secret = user.generate_api_key()
+print(f"API Key: {api_key}")
+print(f"API Secret: {api_secret}")
+2025-02-09 11:23:44,900 INFO ipython console user
+2025-02-09 11:23:44,900 INFO ipython print user
+2025-02-09 11:23:44,900 INFO ipython print (user)
+2025-02-09 11:23:44,901 INFO ipython import secrets
+2025-02-09 11:23:44,901 INFO ipython api_key = secrets.token_hex(16)  # Generate a random API key
+api_secret = secrets.token_hex(16)  # Generate a random API secret
+
+# Save the API key and secret to the user document
+user.api_key = api_key
+user.api_secret = api_secret
+user.save()
+2025-02-09 11:23:44,901 INFO ipython print(f"API Key: {api_key}")
+print(f"API Secret: {api_secret}")
+2025-02-09 11:23:44,901 INFO ipython === session end ===

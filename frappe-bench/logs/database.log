@@ -2711,3 +2711,7 @@ index creation(creation))
 			ROW_FORMAT=DYNAMIC
 			CHARACTER SET=utf8mb4
 			COLLATE=utf8mb4_unicode_ci
+2025-02-09 11:00:28,218 WARNING database DDL Query made to DB:
+ALTER TABLE `tabTask` ADD COLUMN `title` varchar(140), ADD COLUMN `description` text
+2025-02-09 11:07:35,989 WARNING database DDL Query made to DB:
+alter table `tabDocType` add column if not exists migration_hash varchar(140)

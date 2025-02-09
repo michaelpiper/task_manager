@@ -52,3 +52,32 @@
 2025-02-09 10:28:12,530 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
 2025-02-09 10:28:15,335 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
 2025-02-09 10:31:54,712 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:38:29,649 INFO /home/mac/Workspace/frappe/.venv/bin/bench start
+2025-02-09 10:38:29,913 INFO /home/mac/Workspace/frappe/.venv/bin/bench watch
+2025-02-09 10:38:29,970 INFO /home/mac/Workspace/frappe/.venv/bin/bench worker
+2025-02-09 10:38:29,975 INFO /home/mac/Workspace/frappe/.venv/bin/bench serve --port 8000
+2025-02-09 10:38:30,026 INFO /home/mac/Workspace/frappe/.venv/bin/bench schedule
+2025-02-09 10:39:34,000 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:49:46,690 INFO /home/mac/Workspace/frappe/.venv/bin/bench setup redis
+2025-02-09 10:50:13,788 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:52:09,886 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:52:16,887 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager console
+2025-02-09 10:52:21,454 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:53:35,593 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 10:54:31,484 INFO /home/mac/Workspace/frappe/.venv/bin/bench start
+2025-02-09 10:54:36,504 INFO /home/mac/Workspace/frappe/.venv/bin/bench start
+2025-02-09 10:57:27,447 INFO /home/mac/Workspace/frappe/.venv/bin/bench setup redis
+2025-02-09 10:57:45,517 INFO /home/mac/Workspace/frappe/.venv/bin/bench setup redis
+2025-02-09 10:58:16,799 INFO /home/mac/Workspace/frappe/.venv/bin/bench setup redis
+2025-02-09 10:58:27,374 INFO /home/mac/Workspace/frappe/.venv/bin/bench start
+2025-02-09 10:58:27,636 INFO /home/mac/Workspace/frappe/.venv/bin/bench schedule
+2025-02-09 10:58:27,637 INFO /home/mac/Workspace/frappe/.venv/bin/bench worker
+2025-02-09 10:58:27,704 INFO /home/mac/Workspace/frappe/.venv/bin/bench serve --port 8000
+2025-02-09 10:58:27,724 INFO /home/mac/Workspace/frappe/.venv/bin/bench watch
+2025-02-09 11:06:49,252 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
+2025-02-09 11:07:16,135 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local make-token user@example.com
+2025-02-09 11:07:21,173 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local make-token user@example.com
+2025-02-09 11:07:34,912 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local migrate
+2025-02-09 11:07:47,871 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local make-token user@example.com
+2025-02-09 11:07:59,839 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local make-token user@example.com
+2025-02-09 11:09:26,612 INFO /home/mac/Workspace/frappe/.venv/bin/bench --site task_manager.local console
