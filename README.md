@@ -13,6 +13,7 @@ Before setting up Frappe, ensure you have the following installed:
 - MariaDB
 - Yarn
 - wkhtmltopdf
+- Docker
 
 ## Installation Steps
 
@@ -58,6 +59,22 @@ nvm install 20
 nvm use 20
 brew install yarn
 brew install wkhtmltopdf
+```
+
+## Docker Setup
+
+### Install Docker
+
+```bash
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+### Run Frappe Using Docker
+
+```bash
+docker run -d -p 8000:8000 --name frappe-container frappe/bench:latest
 ```
 
 ## Step 1: Create a Virtual Environment
@@ -174,9 +191,8 @@ Use Frappe's built-in API capabilities:
 ```bash
 curl -X POST http://task_manager.local:8000/api/resource/Task\
  -H "Authorization: token be5920cb845e764:b98c5601b5d8517" \
- 
-  -H "Content-Type: application/json" \
-  -d '{
+ -H "Content-Type: application/json" \
+ -d '{
     "title": "Complete API Development",
     "description": "Develop RESTful APIs for Task DocType",
     "status": "Open",
@@ -201,53 +217,40 @@ Include the token in request headers:
 }
 ```
 
-## Verify Redis Configuration
+## Performance Optimization
 
-### Check Redis Configuration Files
-
-Ensure that the following Redis configuration files exist:
-
-- `redis_cache.conf`
-- `redis_queue.conf`
-- `redis_socketio.conf`
-
-If missing, regenerate them:
+### Use Pagination for Large Datasets
 
 ```bash
-bench setup redis
+GET /api/resource/Task?limit_start=0&limit_page_length=20
 ```
 
-### Ensure Redis Services Are Running
-
-Start all services:
+### Selective Fields to Reduce Payload
 
 ```bash
-bench start
+GET /api/resource/Task?fields=["title", "status"]
 ```
 
-Or manually start Redis:
+### Enable Redis Caching
 
 ```bash
-redis-server config/redis_cache.conf
-redis-server config/redis_queue.conf
-redis-server config/redis_socketio.conf
+sudo apt install redis-server
+bench --site task_manager.local set-config redis_cache enabled
+bench --site task_manager.local set-config redis_queue enabled
 ```
 
-### Review the Procfile
+## Debugging and Problem Solving
 
-Ensure it includes Redis services:
+Analyze Frappe logs:
 
-```ini
-redis_cache: redis-server config/redis_cache.conf
-redis_socketio: redis-server config/redis_socketio.conf
-redis_queue: redis-server config/redis_queue.conf
+```bash
+bench --site task_manager.local --debug
 ```
 
-### Check for Port Conflicts
+If API responses are slow:
+- Enable Redis caching
+- Optimize database queries
 
-Ensure Redis configuration ports are not occupied. Modify `.conf` files if needed.
+Document issues and resolutions in the Frappe Community Forum.
 
-### Get Help
-
-Seek assistance in the [Frappe Community Forum](https://discuss.frappe.io/).
 
